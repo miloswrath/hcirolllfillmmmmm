@@ -14,6 +14,7 @@ function loadAndRenderTimelineElements(csvFilePath) {
           header: true,
           complete: (results) => {
             const data = results.data;
+            console.log(data);
             const elements = renderTimelineElements(data);
             resolve(elements);  // Resolve the promise with the timeline elements
           },
@@ -30,12 +31,12 @@ function renderTimelineElements(data) {
       className="vertical-timeline-element--work"
       contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
       contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-      date={item.Release_Year}
+      date={item.Released_Year}
       iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
       icon={<WorkIcon />}
     >
       <h3 className="vertical-timeline-element-title">{item.Series_Title}</h3>
-      <h4 className="vertical-timeline-element-subtitle">{item.Release_Year}</h4>
+      <h4 className="vertical-timeline-element-subtitle">{item.Released_Year}</h4>
       <p>{item.Overview}</p>
     </VerticalTimelineElement>
   ));

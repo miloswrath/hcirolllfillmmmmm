@@ -8,23 +8,33 @@ import 'react-vertical-timeline-component/style.min.css';
 import loadAndRenderTimelineElements from './parse.jsx';
 
 
-
 function TimelineComponent() {
-  const [elements, setElements] = useState([]);
+  const [elements, setElements] = useState(null);
 
   useEffect(() => {
-    loadAndRenderTimelineElements('src/data/imdb_top_1000.csv')
-      .then(elements => setElements(elements))  // Set state with the resolved elements
+    loadAndRenderTimelineElements('./src/assets/data/imdb_top_1000.csv')
+      .then(elements => setElements(elements))
       .catch(error => console.error('Error loading CSV:', error));
   }, []);
 
   return (
     <div>
-      <VerticalTimeline>
-        {elements}
+      <input
+        type="text"
+        placeholder="Search..."
+      />
+      <button>Search</button>
+      <h1>RollFilm</h1>
+      <p>Top 1000 movies of all time</p>
+      <button> Filters </button>
+
+      <button> Sort By </button>
+      <VerticalTimeline>{elements}
       </VerticalTimeline>
+
     </div>
   );
 }
+
   
 export default TimelineComponent;
